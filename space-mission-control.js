@@ -38,7 +38,7 @@ function startMonitoring ()
 {
 	// TODO: Write a function named `startMonitoring` that uses `setInterval` to simulate continuous monitoring. This function should print a message every few seconds and store the interval ID in `monitoringTaskId`.
 
-	monitoringTaskId = setInterval(function(){console.log('task still operating')}, 7500);
+	monitoringTaskId = setInterval(function(){console.log('task(s) still running')}, 10000);
 }
 
 // Task 5: Stop Monitoring Function
@@ -46,7 +46,7 @@ function stopMonitoring ()
 {
 	// TODO: Implement a function named `stopMonitoring` that stops the continuous monitoring by using `clearInterval` on `monitoringTaskId`.
 	clearInterval(monitoringTaskId);
-	console.log('task completed');
+	console.log('all task(s) completed');
 }
 
 // Task 6: Start Countdown Function
@@ -78,31 +78,23 @@ function scheduleMission ()
 {	
 	
 	console.log('preparing mission');
-	// addOneTimeTask(test,5500);
+	addOneTimeTask(test,5500);
 	// TODO: Use the functions you've created to schedule the pre-launch system check, start and stop monitoring, and execute the countdown. Make sure to adjust the delays appropriately to simulate a real mission timeline.
 
 	runOneTimeTasks();
 
 	startMonitoring();
-	// stopMonitoring();
-	
-	startCountdown(5);
+	setTimeout(() => {
+			stopMonitoring();
+			startCountdown(5)
+			}, 
+		30000);
+	console.log('message')
+	// startCountdown(5);
 }
 
-// scheduleMission(); // Starts the mission.
+scheduleMission(); // Starts the mission.
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function runTasks() {
-  
-let v1 = 'start'; let v2 = 'mid'; let v3 = 'end';
-let v_arr = [v1,v2,v3];
-
-
-	for(v of v_arr) {
-		console.log(v);
-		await delay(1500);
-	}
 }
