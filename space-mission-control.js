@@ -1,10 +1,26 @@
+/*I would like to credit Mukasa for helping me with troubleshooting this code, for it would not be possible to complete without his guidance*/
+
 // Task 1: Declare The Task Array and The Interval ID
 // TODO: Begin by declaring an array to hold your one-time tasks (`oneTimeTasks`) and variables for any interval IDs you'll need for continuous tasks (`monitoringTaskId`).
 
 let oneTimeTasks = [];
 let monitoringTaskId;
-function test () {
-	console.log('fueling rocket');
+function fuel () {
+	console.log('fueling spacecraft');
+}
+function astronauts() {
+	console.log('getting astronauts on board');
+}
+function seals() {
+	console.log('doors closed and seals shut');
+}
+
+function engines() {
+	console.log('engines activated');
+}
+
+function diagnostics() {
+	console.log('running diagnostics');
 }
 
 
@@ -38,7 +54,7 @@ function startMonitoring ()
 {
 	// TODO: Write a function named `startMonitoring` that uses `setInterval` to simulate continuous monitoring. This function should print a message every few seconds and store the interval ID in `monitoringTaskId`.
 
-	monitoringTaskId = setInterval(function(){console.log('task(s) still running')}, 10000);
+	monitoringTaskId = setInterval(function(){console.log('task(s) still running')}, 5000);
 }
 
 // Task 5: Stop Monitoring Function
@@ -78,7 +94,11 @@ function scheduleMission ()
 {	
 	
 	console.log('preparing mission');
-	addOneTimeTask(test,5500);
+	addOneTimeTask(fuel,2500);
+	addOneTimeTask(engines,6500);
+	addOneTimeTask(astronauts,5000);
+	addOneTimeTask(seals, 12000);
+	addOneTimeTask(diagnostics, 15000);
 	// TODO: Use the functions you've created to schedule the pre-launch system check, start and stop monitoring, and execute the countdown. Make sure to adjust the delays appropriately to simulate a real mission timeline.
 
 	runOneTimeTasks();
@@ -88,13 +108,9 @@ function scheduleMission ()
 			stopMonitoring();
 			startCountdown(5)
 			}, 
-		30000);
-	console.log('message')
-	// startCountdown(5);
+		20000);
 }
 
 scheduleMission(); // Starts the mission.
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+
